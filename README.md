@@ -10,7 +10,7 @@ h('div', properties, children)
 div(properties, children)
 ```
 
-**Work in progress!** Currently there is only `div()`.
+**Work in progress!** Currently there is only a limited amount of tagnames to choose from. See the `tagNames` list here: [src/index.js](src/index.js).
 
 ## How to use
 

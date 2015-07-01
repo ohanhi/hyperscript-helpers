@@ -12,8 +12,12 @@ var node = function node(h) {
   };
 };
 
+var tagNames = ['a', 'article', 'div', 'footer', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'header', 'li', 'ol', 'section', 'span', 'ul'];
+
 module.exports = function (h) {
-  return {
-    div: node(h)('div')
-  };
+  var exported = {};
+  tagNames.forEach(function (n) {
+    exported[n] = node(h)(n);
+  });
+  return exported;
 };
