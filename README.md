@@ -16,6 +16,10 @@ See the supported `TAG_NAMES` here: [src/index.js](src/index.js).
 
 ## How to use
 
+```
+npm install hyperscript-helpers
+```
+
 The `hyperscript-helpers` are hyperscript-agnostic, which means there are no dependencies. Instead, you need to pass the implementation when you import the helpers.
 
 Using ES6 :sparkling_heart:
