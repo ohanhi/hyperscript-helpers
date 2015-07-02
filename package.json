@@ -1,7 +1,7 @@
 {
   "name": "hyperscript-helpers",
   "version": "1.0.0",
-  "description": "Simplified syntax for hyperscript",
+  "description": "Terse syntax for hyperscript",
   "main": "index.js",
   "dependencies": {},
   "devDependencies": {
