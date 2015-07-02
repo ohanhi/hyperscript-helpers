@@ -3,7 +3,7 @@ const node =
     tagName =>
       (...argsArray) => h(tagName, ...argsArray);
 
-const tagNames =
+const TAG_NAMES =
   [
   'a', 'abbr', 'address', 'area', 'article', 'aside', 'audio', 'b', 'base',
   'bdi', 'bdo', 'blockquote', 'body', 'br', 'button', 'canvas', 'caption',
@@ -21,6 +21,7 @@ const tagNames =
 module.exports =
   h => {
     const exported = {};
-    tagNames.forEach(n => { exported[n] = node(h)(n); });
+    TAG_NAMES.forEach(n => { exported[n] = node(h)(n); });
+    exported.TAG_NAMES = TAG_NAMES;
     return exported;
   };
