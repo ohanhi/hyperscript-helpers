@@ -21,7 +21,7 @@ const h = require('hyperscript'); // or 'virtual-hyperscript'
 const hh = require('hyperscript-helpers')(h);
 
 // with ES6 destructuring
-const { div } = require('hyperscript-helpers')(h);
+const { div, span, h1 } = require('hyperscript-helpers')(h);
 ```
 
 Brought to you by [ohanhi](https://github.com/ohanhi/).
