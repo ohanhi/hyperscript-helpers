@@ -10,10 +10,11 @@ h('div', properties, children)
 
 // write
 div(properties, children)
+```
 
+### NEW in 2.0.0 !!
 
-// NEW in 2.0.0 !!
-
+```javascript
 // instead of writing
 h('div.amazing')
 
@@ -26,6 +27,8 @@ h('h1#bestest-title', 'Everything is awesome!')
 // write
 h1('#bestest-title', 'Everything is awesome!')
 ```
+
+This is super helpful, especially when using `hyperscript-helpers` with [Cycle.js](http://cycle.js.org/)!
 
 See the supported `TAG_NAMES` here: [src/index.js](src/index.js).
 
@@ -64,8 +67,8 @@ Once that's done, you can go and use the terse syntax:
 ▸ h1({ 'data-id': 'headline-6.1.2' }, 'Structural Weaknesses').outerHTML
 ◂ '<h1 data-id="headline-6.1.2">Structural Weaknesses</h1>'
 
-▸ div({ 'class': 'wrapper' }, [ h1('Heading'), span('Spanner') ]).outerHTML
-◂ '<div class="wrapper"><h1>Heading</h1><span>Spanner</span></div>'
+▸ div('#with-proper-id.wrapper', [ h1('Heading'), span('Spanner') ]).outerHTML
+◂ '<div class="wrapper" id="with-proper-id"><h1>Heading</h1><span>Spanner</span></div>'
 ```
 
 ## Contributing
