@@ -55,4 +55,53 @@ describe('arbitrary tag', function(){
   });
 });
 
+describe('isSelector', function() {
+  jsc.property('isSelector(".<any>") ≡ true', "string", function(string) {
+    return helpers.isSelector('.' + string);
+  });
+
+  jsc.property('isSelector("#<any>") ≡ true', "string", function(string) {
+    return helpers.isSelector('#' + string);
+  });
+
+  jsc.property('isSelector("^[.#]<any>") ≡ false', "nestring", function(string) {
+    const startingWith =
+      string.indexOf('.') === 0
+      || string.indexOf('#') === 0;
+    return startingWith || !helpers.isSelector(string);
+  });
+});
+
+var selChars = jsc.elements(['.', '#']);
+
+describe('arbitrary selector', function() {
+  jsc.property('div(".class") ≡ h("div.class")', "nestring", function(className) {
+    const selector = '.' + className;
+    const hr = h('div' + selector);
+    const divr = div(selector);
+    return jsc.utils.isApproxEqual(hr, divr);
+  });
+
+  jsc.property('div("#id") ≡ h("div#id")', "nestring", function(id) {
+    const selector = '#' + id;
+    const hr = h('div' + selector);
+    const divr = div(selector);
+    return jsc.utils.isApproxEqual(hr, divr);
+  });
+
+  jsc.property('div("[.#]foo", children) ≡ h("div[.#]id", children)', selChars, "nestring", "array string", function(selChar, id, children) {
+    const selector = selChar + id;
+    const hr = h('div' + selector, children);
+    const divr = div(selector, children);
+    return jsc.utils.isApproxEqual(hr, divr);
+  });
+
+  jsc.property('div("[.#]foo", attrs, children) ≡ h("div[.#]id", attrs, children)', selChars, "nestring", "dict string", "array string", function(selChar, id, attrs, children) {
+    const selector = selChar + id;
+    const hr = h('div' + selector, attrs, children);
+    const divr = div(selector, attrs, children);
+    return jsc.utils.isApproxEqual(hr, divr);
+  });
+});
+
 // TODO: in jsverify 0.7.x there will be helpers to do recursive definitions (easily)

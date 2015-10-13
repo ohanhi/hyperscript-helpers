@@ -1,13 +1,29 @@
 'use strict';
 
+var isValidString = function isValidString(param) {
+  return typeof param === 'string' && param.length > 0;
+};
+
+var startsWith = function startsWith(string, start) {
+  return string.indexOf(start) === 0;
+};
+
+var isSelector = function isSelector(param) {
+  return isValidString(param) && (startsWith(param, '.') || startsWith(param, '#'));
+};
+
 var node = function node(h) {
   return function (tagName) {
-    return function () {
-      for (var _len = arguments.length, argsArray = Array(_len), _key = 0; _key < _len; _key++) {
-        argsArray[_key] = arguments[_key];
+    return function (first) {
+      for (var _len = arguments.length, rest = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+        rest[_key - 1] = arguments[_key];
       }
 
-      return h.apply(undefined, [tagName].concat(argsArray));
+      if (isSelector(first)) {
+        return h.apply(undefined, [tagName + first].concat(rest));
+      } else {
+        return h.apply(undefined, [tagName, first].concat(rest));
+      }
     };
   };
 };
@@ -20,5 +36,6 @@ module.exports = function (h) {
     exported[n] = node(h)(n);
   });
   exported.TAG_NAMES = TAG_NAMES;
+  exported.isSelector = isSelector;
   return exported;
 };
