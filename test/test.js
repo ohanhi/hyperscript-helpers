@@ -1,6 +1,6 @@
 const assert = require('assert');
 const h = require('hyperscript');
-const helpers = require('../index')(h);
+const helpers = require('../dist/index')(h);
 const div = helpers.div;
 const jsc = require('jsverify');
 const _ = require('lodash')
@@ -51,6 +51,55 @@ describe('arbitrary tag', function(){
   jsc.property('div(attrs, children) ≡ h("div", attrs, children)', tagArb, "dict string", "array string", function(tag, attrs, children) {
     const hr = h(tag, attrs, children);
     const divr = helpers[tag](attrs, children);
+    return jsc.utils.isApproxEqual(hr, divr);
+  });
+});
+
+describe('isSelector', function() {
+  jsc.property('isSelector(".<any>") ≡ true', "string", function(string) {
+    return helpers.isSelector('.' + string);
+  });
+
+  jsc.property('isSelector("#<any>") ≡ true', "string", function(string) {
+    return helpers.isSelector('#' + string);
+  });
+
+  jsc.property('isSelector("^[.#]<any>") ≡ false', "nestring", function(string) {
+    const startingWith =
+      string.indexOf('.') === 0
+      || string.indexOf('#') === 0;
+    return startingWith || !helpers.isSelector(string);
+  });
+});
+
+var selChars = jsc.elements(['.', '#']);
+
+describe('arbitrary selector', function() {
+  jsc.property('div(".class") ≡ h("div.class")', "nestring", function(className) {
+    const selector = '.' + className;
+    const hr = h('div' + selector);
+    const divr = div(selector);
+    return jsc.utils.isApproxEqual(hr, divr);
+  });
+
+  jsc.property('div("#id") ≡ h("div#id")', "nestring", function(id) {
+    const selector = '#' + id;
+    const hr = h('div' + selector);
+    const divr = div(selector);
+    return jsc.utils.isApproxEqual(hr, divr);
+  });
+
+  jsc.property('div("[.#]foo", children) ≡ h("div[.#]id", children)', selChars, "nestring", "array string", function(selChar, id, children) {
+    const selector = selChar + id;
+    const hr = h('div' + selector, children);
+    const divr = div(selector, children);
+    return jsc.utils.isApproxEqual(hr, divr);
+  });
+
+  jsc.property('div("[.#]foo", attrs, children) ≡ h("div[.#]id", attrs, children)', selChars, "nestring", "dict string", "array string", function(selChar, id, attrs, children) {
+    const selector = selChar + id;
+    const hr = h('div' + selector, attrs, children);
+    const divr = div(selector, attrs, children);
     return jsc.utils.isApproxEqual(hr, divr);
   });
 });

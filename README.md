@@ -53,6 +53,28 @@ Once that's done, you can go and use the terse syntax:
 ◂ '<div class="wrapper"><h1>Heading</h1><span>Spanner</span></div>'
 ```
 
-Brought to you by [ohanhi](https://github.com/ohanhi/).
+## Contributing
+
+To get set up, simply clone the repository, navigate to the directory on your terminal
+and do the following:
+
+```bash
+# install dependencies
+npm install
+
+# build the project
+npm start
+
+# run tests
+npm test
+```
+
+The source code can be found under the `src` directory, and the built file is under `dist`.
+
+Tests are written with Mocha, using the awesome [JSVerify](http://jsverify.github.io/) library.
+
+
+
+`hyperscript-helpers` is brought to you by [@ohanhi](https://twitter.com/ohanhi/).
 
 License: MIT

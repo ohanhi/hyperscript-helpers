@@ -1,7 +1,25 @@
+const isValidString =
+  param =>
+    typeof param === 'string' && param.length > 0;
+
+const startsWith =
+  (string, start) =>
+    string.indexOf(start) === 0;
+
+const isSelector =
+  param =>
+    isValidString(param) && ( startsWith(param, '.') || startsWith(param, '#') );
+
 const node =
   h =>
     tagName =>
-      (...argsArray) => h(tagName, ...argsArray);
+      (first, ...rest) => {
+        if (isSelector(first)) {
+          return h(tagName + first, ...rest);
+        } else {
+          return h(tagName, first, ...rest);
+        }
+      };
 
 const TAG_NAMES =
   [
@@ -23,5 +41,6 @@ module.exports =
     const exported = {};
     TAG_NAMES.forEach(n => { exported[n] = node(h)(n); });
     exported.TAG_NAMES = TAG_NAMES;
+    exported.isSelector = isSelector;
     return exported;
   };
