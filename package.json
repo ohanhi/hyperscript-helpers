@@ -2,7 +2,7 @@
   "name": "hyperscript-helpers",
   "version": "1.0.0",
   "description": "Terse syntax for hyperscript",
-  "main": "index.js",
+  "main": "dist/index.js",
   "dependencies": {},
   "devDependencies": {
     "babel": "^5.6.14",
@@ -13,7 +13,7 @@
   },
   "scripts": {
     "test": "mocha",
-    "build": "babel src/index.js --out-file ./index.js"
+    "build": "babel src/index.js --out-file ./dist/index.js"
   },
   "repository": {
     "type": "git",

@@ -1,6 +1,6 @@
 const assert = require('assert');
 const h = require('hyperscript');
-const helpers = require('../index')(h);
+const helpers = require('../dist/index')(h);
 const div = helpers.div;
 const jsc = require('jsverify');
 const _ = require('lodash')
