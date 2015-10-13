@@ -10,6 +10,21 @@ h('div', properties, children)
 
 // write
 div(properties, children)
+
+
+// NEW in 2.0.0 !!
+
+// instead of writing
+h('div.amazing')
+
+// write
+div('.amazing')
+
+// instead of
+h('h1#bestest-title', 'Everything is awesome!')
+
+// write
+h1('#bestest-title', 'Everything is awesome!')
 ```
 
 See the supported `TAG_NAMES` here: [src/index.js](src/index.js).
