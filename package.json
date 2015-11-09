@@ -1,6 +1,6 @@
 {
   "name": "hyperscript-helpers",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Terse syntax for hyperscript",
   "main": "dist/index.js",
   "dependencies": {},
