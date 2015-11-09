@@ -4,7 +4,7 @@ Terse syntax for hyperscript.
 
 [`elm-html`](https://github.com/evancz/elm-html) inspired helpers for writing [hyperscript](https://github.com/dominictarr/hyperscript) or [virtual-hyperscript](https://github.com/Matt-Esch/virtual-dom/tree/master/virtual-hyperscript).
 
-It also works with `React.createElement`.
+`hyperscript-helpers` work with `React.createElement`, but bear in mind there is also a feature-rich hyperscript library for React: [react-hyperscript](https://github.com/mlmorg/react-hyperscript).
 
 ```javascript
 // instead of writing
