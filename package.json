@@ -9,7 +9,8 @@
     "hyperscript": "^1.4.6",
     "jsverify": "^0.6.0",
     "lodash": "^3.10.0",
-    "mocha": "^2.2.5"
+    "mocha": "^2.2.5",
+    "react": "^0.14.2"
   },
   "scripts": {
     "test": "mocha",
