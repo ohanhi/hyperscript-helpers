@@ -89,6 +89,13 @@ var div = hh.div,
   h1      = hh.h1;
 ```
 
+Using with React
+
+```javascript
+var React = require('react');
+const { div, span, h1 } = require('hyperscript-helpers')(React.createElement); // ← Notice the (React.createElement)
+```
+
 Once that's done, you can go and use the terse syntax:
 
 ```javascript
