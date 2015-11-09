@@ -32,9 +32,9 @@ var TAG_NAMES = ['a', 'abbr', 'address', 'area', 'article', 'aside', 'audio', 'b
 
 module.exports = function (h) {
   var exported = { TAG_NAMES: TAG_NAMES, isSelector: isSelector };
-  var genericnode = node(h);
+  var appliedNode = node(h);
   TAG_NAMES.forEach(function (n) {
-    exported[n] = genericnode(n);
+    exported[n] = appliedNode(n);
   });
   return exported;
 };
