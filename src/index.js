@@ -38,9 +38,10 @@ const TAG_NAMES =
 
 module.exports =
   h => {
-    const exported = {};
-    TAG_NAMES.forEach(n => { exported[n] = node(h)(n); });
-    exported.TAG_NAMES = TAG_NAMES;
-    exported.isSelector = isSelector;
+    const exported = { TAG_NAMES, isSelector };
+    const appliedNode = node(h);
+    TAG_NAMES.forEach(n => {
+      exported[n] = appliedNode(n);
+    });
     return exported;
   };
