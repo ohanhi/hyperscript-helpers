@@ -4,6 +4,8 @@ Terse syntax for hyperscript.
 
 [`elm-html`](https://github.com/evancz/elm-html) inspired helpers for writing [hyperscript](https://github.com/dominictarr/hyperscript) or [virtual-hyperscript](https://github.com/Matt-Esch/virtual-dom/tree/master/virtual-hyperscript).
 
+It also works with `React.createElement`.
+
 ```javascript
 // instead of writing
 h('div', properties, children)
@@ -12,25 +14,54 @@ h('div', properties, children)
 div(properties, children)
 ```
 
-### NEW in 2.0.0 !!
+Okay. Suppose we have a list of menu items of:
+
+`{ title: String, id: Number }`
+
+and a function that returns attributes given an id:
 
 ```javascript
-// instead of writing
-h('div.amazing')
-
-// write
-div('.amazing')
-
-// instead of
-h('h1#bestest-title', 'Everything is awesome!')
-
-// write
-h1('#bestest-title', 'Everything is awesome!')
+function attrs(id) {
+  return { draggable: "true", "data-id": id };
+}
 ```
+
+
+How would we render these in plain hyperscript, JSX or with the helpers?
+
+```javascript
+// plain hyperscript
+h('ul#bestest-menu', items.map( item =>
+  h('li#item-'+item.id, attrs(item.id), item.title))
+);
+
+// JSX
+<ul id="bestest-menu">
+  {
+    items.map( item =>
+      <li {...{id: "item-"+item.id}} {...attrs(item.id)}>${item.title}</li>
+    )
+  }
+</ul>
+
+// hyperscript-helpers
+ul('#bestest-menu', items.map( item =>
+  li('#item-'+item.id, attrs(item.id), item.title))
+);
+```
+
+With `hyperscript-helpers`
+
+* It's nice to use functional utilities like lodash, because it's just functions.
+* You get errors if you misspell a tag name, because they are function names.
+* You have a consistent syntax at all times, because markup is just functions.
+* Also, it's just functions.
+
 
 This is super helpful, especially when using `hyperscript-helpers` with [Cycle.js](http://cycle.js.org/)!
 
 See the supported `TAG_NAMES` here: [src/index.js](src/index.js).
+
 
 ## How to use
 
