@@ -8,7 +8,7 @@ const startsWith =
 
 const isSelector =
   param =>
-    isValidString(param) && ( startsWith(param, '.') || startsWith(param, '#') );
+    isValidString(param) && (startsWith(param, '.') || startsWith(param, '#'));
 
 const node =
   h =>
@@ -21,8 +21,7 @@ const node =
         }
       };
 
-const TAG_NAMES =
-  [
+const TAG_NAMES = [
   'a', 'abbr', 'address', 'area', 'article', 'aside', 'audio', 'b', 'base',
   'bdi', 'bdo', 'blockquote', 'body', 'br', 'button', 'canvas', 'caption',
   'cite', 'code', 'col', 'colgroup', 'dd', 'del', 'dfn', 'dir', 'div', 'dl',
@@ -34,9 +33,9 @@ const TAG_NAMES =
   'samp', 'script', 'section', 'select', 'small', 'source', 'span', 'strong',
   'style', 'sub', 'sup', 'table', 'tbody', 'td', 'textarea', 'tfoot', 'th',
   'thead', 'title', 'tr', 'u', 'ul', 'video'
-  ];
+];
 
-module.exports =
+export default
   h => {
     const exported = { TAG_NAMES, isSelector };
     const appliedNode = node(h);
