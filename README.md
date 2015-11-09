@@ -39,7 +39,7 @@ h('ul#bestest-menu', items.map( item =>
 <ul id="bestest-menu">
   {
     items.map( item =>
-      <li {...{id: "item-"+item.id}} {...attrs(item.id)}>${item.title}</li>
+      <li {...{id: "item-"+item.id}} {...attrs(item.id)}>{item.title}</li>
     )
   }
 </ul>
