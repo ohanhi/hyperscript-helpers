@@ -64,18 +64,21 @@ See the supported `TAG_NAMES` here: [src/index.js](src/index.js).
 
 ## API
 
+Because **hyperscript-helpers** are library agnostic there is no exact API. 
+But, just to give you a picture of syntax possibilities: 
+
 ```
-tagName(<selector>)
-tagName(<attrs>)
-tagName(<children>)
-tagName(<attrs>, <children>)
-tagName(<selector>, <children>)
-tagName(<selector>, <attrs>, <children>)
+tagName(selector)
+tagName(attrs)
+tagName(children)
+tagName(attrs, children)
+tagName(selector, children)
+tagName(selector, attrs, children)
 ```
 
-Where `<selector>` is string, starting with "." or "#".<br/>
-Where `<attrs>` is an object of attributes. 
-Where `<children>` is hyperscript node, array of hyperscript nodes, string or array of strings.
+Where `selector` is string, starting with "." or "#".<br/>
+Where `attrs` is an object of attributes. 
+Where `children` is hyperscript node, array of hyperscript nodes, string or array of strings.
 
 **Hyperscript-helpers** provide a very thin wrapper so a syntax of exact hyperscript library<br/>
 (like [virtual-hyperscript](https://github.com/Matt-Esch/virtual-dom/tree/master/virtual-hyperscript)) still applies.
