@@ -1,12 +1,12 @@
-# `hyperscript-helpers`
+# hyperscript-helpers
 
 Terse syntax for hyperscript.
 
 ![](https://travis-ci.org/ohanhi/hyperscript-helpers.svg)
 
-[`elm-html`](https://github.com/evancz/elm-html) inspired helpers for writing [hyperscript](https://github.com/dominictarr/hyperscript) or [virtual-hyperscript](https://github.com/Matt-Esch/virtual-dom/tree/master/virtual-hyperscript).
+[elm-html](https://github.com/evancz/elm-html) inspired helpers for writing [hyperscript](https://github.com/dominictarr/hyperscript) or [virtual-hyperscript](https://github.com/Matt-Esch/virtual-dom/tree/master/virtual-hyperscript).
 
-`hyperscript-helpers` work with `React.createElement`, but bear in mind there is also a feature-rich hyperscript library for React: [react-hyperscript](https://github.com/mlmorg/react-hyperscript).
+**hyperscript-helpers** work with `React.createElement`, but bear in mind there is also a feature-rich hyperscript library for React: [react-hyperscript](https://github.com/mlmorg/react-hyperscript).
 
 ```javascript
 // instead of writing
@@ -58,16 +58,16 @@ With HH:
 * You have a consistent syntax at all times, because markup is just functions
 * Also, it's just functions
 
-This is super helpful, especially when using `hyperscript-helpers` with [Cycle.js](http://cycle.js.org/)!
+This is super helpful, especially when using **hyperscript-helpers** with [Cycle.js](http://cycle.js.org/)!
 
 See the supported `TAG_NAMES` here: [src/index.js](src/index.js).
 
 ## API
 
-Because **hyperscript-helpers** are library agnostic there is no exact API. 
-But, just to give you a picture of syntax possibilities: 
+Because **hyperscript-helpers** are hyperscript-agnostic there is no "exact" API. 
+But, just to give you a direction of what should be possible:
 
-```
+```js
 tagName(selector)
 tagName(attrs)
 tagName(children)
@@ -111,13 +111,15 @@ filenames.map(filename => span([filename])); // <span>README.md</span><span>.git
 
 As most of the nodes will be hardcoded manually, we keep this convenient shortcut.
 
-Syntax 
-
+Not recommended:
 ```js
-span(error ? ".error" : null) 
+span(error ? ".error" : null);         // - may be a trap, because
+span(error ? ".error" : null, {}, []); // - this one does not work (null as a tagName)
 ```
 
-is also illegal. If you need to apply logic rules for class generation, use libraries like [classnames](https://github.com/JedWatson/classnames) for making proper `{className: ...}` argument.
+If you need to apply logic rules for class generation, 
+use libraries like [classnames](https://github.com/JedWatson/classnames) 
+for making proper `{className: ...}` argument.
 
 ## How to use
 
@@ -125,7 +127,7 @@ is also illegal. If you need to apply logic rules for class generation, use libr
 npm install hyperscript-helpers
 ```
 
-The `hyperscript-helpers` are hyperscript-agnostic, which means there are no dependencies. 
+The **hyperscript-helpers** are hyperscript-agnostic, which means there are no dependencies. 
 Instead, you need to pass the implementation when you import the helpers.
 
 Using ES6 :sparkling_heart:
@@ -189,6 +191,6 @@ Tests are written with Mocha, using the awesome [JSVerify](http://jsverify.githu
 
 ---
 
-`hyperscript-helpers` is brought to you by [@ohanhi](https://twitter.com/ohanhi/).
+**hyperscript-helpers** is brought to you by [@ohanhi](https://twitter.com/ohanhi/).
 
 License: MIT
