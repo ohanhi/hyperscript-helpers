@@ -113,8 +113,8 @@ As most of the nodes will be hardcoded manually, we keep this convenient shortcu
 
 Not recommended:
 ```js
-span(error ? ".error" : null);         // - may be a trap, because
-span(error ? ".error" : null, {}, []); // - this one does not work (null as a tagName)
+span(error ? ".error" : null);         // ← may be a trap, because
+span(error ? ".error" : null, {}, []); // ← this one is wrong
 ```
 
 If you need to apply logic rules for class generation, 
