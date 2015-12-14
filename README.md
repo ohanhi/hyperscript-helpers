@@ -1,22 +1,49 @@
 # hyperscript-helpers
 
-Terse syntax for hyperscript.
-
 ![](https://travis-ci.org/ohanhi/hyperscript-helpers.svg)
 
-[elm-html](https://github.com/evancz/elm-html) inspired helpers for writing [hyperscript](https://github.com/dominictarr/hyperscript) or [virtual-hyperscript](https://github.com/Matt-Esch/virtual-dom/tree/master/virtual-hyperscript).
+Terse syntax for hyperscript.
 
-**hyperscript-helpers** work with `React.createElement`, but bear in mind there is also a feature-rich hyperscript library for React: [react-hyperscript](https://github.com/mlmorg/react-hyperscript).
+> Less than 50 lines of code, taking your hyperscripting to the next level.
+
+## What is it
+
+**hyperscript-helpers** [elm-html](https://github.com/evancz/elm-html) inspired helpers for writing
+[hyperscript](https://github.com/dominictarr/hyperscript) or [virtual-hyperscript](https://github.com/Matt-Esch/virtual-dom/tree/master/virtual-hyperscript).
+
+They work with `React.createElement`, but there is also a feature-rich hyperscript library for React: 
+[react-hyperscript](https://github.com/mlmorg/react-hyperscript).
 
 ```javascript
 // instead of writing
-h('div', properties, children)
+h('div')
 
 // write
-div(properties, children)
+div()
+
+// instead of writing
+h('section#main', mainContents)
+
+// write
+section('#main', mainContents)
 ```
 
-Okay. Suppose we have a list of menu items of:
+## hyperscript-helpers vs templates (including JSX) 
+
+With **hyperscript-helpers**:
+
+* It's nice to use functional utilities like lodash, because it's just functions
+* You get errors if you misspell a tag name, because they are function names
+* You have a consistent syntax at all times, because markup is just functions
+* Also, it's just functions
+
+This is super helpful, especially when using **hyperscript-helpers** with [Cycle.js](http://cycle.js.org/)!
+
+See the supported `TAG_NAMES` here: [src/index.js](src/index.js).
+
+#### Example
+
+Suppose we have a list of menu items of:
 
 `{ title: String, id: Number }`
 
@@ -49,18 +76,54 @@ ul('#bestest-menu', items.map( item =>
 );
 ```
 
-## Hyperscript-Helpers vs templates (including JSX) 
+## How to use
 
-With HH:
+```
+npm install hyperscript-helpers
+```
 
-* It's nice to use functional utilities like lodash, because it's just functions
-* You get errors if you misspell a tag name, because they are function names
-* You have a consistent syntax at all times, because markup is just functions
-* Also, it's just functions
+The **hyperscript-helpers** are hyperscript-agnostic, which means there are no dependencies. 
+Instead, you need to pass the implementation when you import the helpers.
 
-This is super helpful, especially when using **hyperscript-helpers** with [Cycle.js](http://cycle.js.org/)!
+Using ES6 :sparkling_heart:
 
-See the supported `TAG_NAMES` here: [src/index.js](src/index.js).
+```js
+const h = require('hyperscript'); // or 'virtual-hyperscript'
+const { div, span, h1 } =
+  require('hyperscript-helpers')(h); // ← Notice the (h)
+```
+
+With React
+
+```js
+const React = require('react');
+const { div, span, h1 } =
+  require('hyperscript-helpers')(React.createElement); // ← Notice the (React.createElement)
+```
+
+Using ES5
+
+```js
+var h = require('hyperscript'); // or 'virtual-hyperscript'
+var hh = require('hyperscript-helpers')(h);  // ← Notice the (h)
+// to use the short syntax, you need to introduce them to the current scope
+var div  = hh.div,
+    span = hh.span,
+    h1   = hh.h1;
+```
+
+Once that's done, you can go and use the terse syntax:
+
+```js
+▸ span('😍').outerHTML
+◂ '<span>😍</span>'
+
+▸ h1({ 'data-id': 'headline-6.1.2' }, 'Structural Weaknesses').outerHTML
+◂ '<h1 data-id="headline-6.1.2">Structural Weaknesses</h1>'
+
+▸ div('#with-proper-id.wrapper', [ h1('Heading'), span('Spanner') ]).outerHTML
+◂ '<div class="wrapper" id="with-proper-id"><h1>Heading</h1><span>Spanner</span></div>'
+```
 
 ## API
 
@@ -76,11 +139,12 @@ tagName(selector, children)
 tagName(selector, attrs, children)
 ```
 
-Where `selector` is string, starting with "." or "#".<br/>
-Where `attrs` is an object of attributes. 
-Where `children` is hyperscript node, array of hyperscript nodes, string or array of strings.
+Where 
+* `selector` is string, starting with "." or "#".
+* `attrs` is an object of attributes. 
+* `children` is a hyperscript node, an array of hyperscript nodes, a string or an array of strings.
 
-**Hyperscript-helpers** provide a very thin wrapper so a syntax of exact hyperscript library<br/>
+**hyperscript-helpers** is a collection of wrapper functions, so the syntax of your exact hyperscript library
 (like [virtual-hyperscript](https://github.com/Matt-Esch/virtual-dom/tree/master/virtual-hyperscript)) still applies.
 
 For example, for multiple classes: 
@@ -93,81 +157,39 @@ button(".btn.btn-default");             // ← separated by dot!
 
 Other hyperscript libraries may have other syntax conventions. 
 
-#### Caution
 
-Whenever you use `tagName(<children>)` syntax and `<children>` may be a string,<br/>
-starting with `'.'` or `'#'`, wrap an argument in `[]`.
+## Potential issues
 
-Not recommended:
-```js
-filenames.map(span); // <span>README.md</span><span class="gitignore"></span>
-``` 
+### Selector shortcut
 
-Recommended:
+The selector shortcut (`div('.my-class')`) may cause unexpected results in some cases. Our suggestion is:
+
+**Whenever you use `tagName(<children>)` syntax and `<children>` may be a string,
+starting with `.` (period) or `#` (number sign), wrap the argument in `[]`.**
 
 ```js
+// ✅ GOOD
 filenames.map(filename => span([filename])); // <span>README.md</span><span>.gitignore</span>
-```` 
 
-As most of the nodes will be hardcoded manually, we keep this convenient shortcut.
+// ❌ BAD
+filenames.map(span); // <span>README.md</span><span class="gitignore"></span>
+```
+
+As most hyperscript is written by hand, we decided keep this convenient shortcut despite the [issue](https://github.com/ohanhi/hyperscript-helpers/issues/6#issuecomment-162989208).
+
+
+### Logic in class names
+
+If you need to apply logic rules for class generation, 
+we recommend using libraries like [classnames](https://github.com/JedWatson/classnames) 
+for making proper `{className: ...}` argument. 
 
 Not recommended:
 ```js
-span(error ? ".error" : null);         // ← may be a trap, because
+span(error ? ".error" : null);         // ← may be a trap, because:
 span(error ? ".error" : null, {}, []); // ← this one is wrong
 ```
 
-If you need to apply logic rules for class generation, 
-use libraries like [classnames](https://github.com/JedWatson/classnames) 
-for making proper `{className: ...}` argument.
-
-## How to use
-
-```
-npm install hyperscript-helpers
-```
-
-The **hyperscript-helpers** are hyperscript-agnostic, which means there are no dependencies. 
-Instead, you need to pass the implementation when you import the helpers.
-
-Using ES6 :sparkling_heart:
-
-```js
-var h = require('hyperscript'); // or 'virtual-hyperscript'
-const { div, span, h1 } = require('hyperscript-helpers')(h); // ← Notice the (h)
-```
-
-With React
-
-```js
-var React = require('react');
-const { div, span, h1 } = require('hyperscript-helpers')(React.createElement); // ← Notice the (React.createElement)
-```
-
-Using ES5
-
-```js
-var h = require('hyperscript'); // or 'virtual-hyperscript'
-var hh = require('hyperscript-helpers')(h);  // ← Notice the (h)
-// to use the short syntax, you need to introduce them to the current scope
-var div = hh.div,
-  span    = hh.span,
-  h1      = hh.h1;
-```
-
-
-Once that's done, you can go and use the terse syntax:
-
-```js
-▸ span('😍').outerHTML
-◂ '<span>😍</span>'
-
-▸ h1({ 'data-id': 'headline-6.1.2' }, 'Structural Weaknesses').outerHTML
-◂ '<h1 data-id="headline-6.1.2">Structural Weaknesses</h1>'
-
-▸ div('#with-proper-id.wrapper', [ h1('Heading'), span('Spanner') ]).outerHTML
-◂ '<div class="wrapper" id="with-proper-id"><h1>Heading</h1><span>Spanner</span></div>'
-```
 
 ## Contributing
 
