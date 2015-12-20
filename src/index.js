@@ -37,10 +37,10 @@ const TAG_NAMES = [
 
 export default
   h => {
-    const exported = { TAG_NAMES, isSelector };
-    const appliedNode = node(h);
+    const createTag = node(h);
+    const exported = { TAG_NAMES, isSelector, createTag };
     TAG_NAMES.forEach(n => {
-      exported[n] = appliedNode(n);
+      exported[n] = createTag(n);
     });
     return exported;
   };
