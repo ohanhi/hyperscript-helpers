@@ -4,7 +4,7 @@ const isValidString =
 
 const startsWith =
   (string, start) =>
-    string.indexOf(start) === 0;
+    string[0] === start;
 
 const isSelector =
   param =>
