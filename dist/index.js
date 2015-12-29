@@ -8,7 +8,7 @@ var isValidString = function isValidString(param) {
 };
 
 var startsWith = function startsWith(string, start) {
-  return string.indexOf(start) === 0;
+  return string[0] === start;
 };
 
 var isSelector = function isSelector(param) {
