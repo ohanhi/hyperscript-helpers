@@ -190,6 +190,9 @@ span(error ? ".error" : null);         // ← may be a trap, because:
 span(error ? ".error" : null, {}, []); // ← this one is wrong
 ```
 
+## Tools
+
+[html-to-hyperscript.paqmind.com](http://html-to-hyperscript.paqmind.com) – webservice to convert HTML to hyperscript
 
 ## Contributing
 
