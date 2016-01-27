@@ -3,6 +3,7 @@
   "version": "2.0.3",
   "description": "Terse syntax for hyperscript",
   "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
   "dependencies": {},
   "devDependencies": {
     "babel": "^5.6.14",
@@ -18,7 +19,8 @@
     "lint": "./node_modules/.bin/eslint src/",
     "test": "npm run lint && mocha",
     "start": "./node_modules/.bin/babel src/index.js --out-file dist/index.js",
-    "prestart": "npm install"
+    "ts-def": "./node_modules/.bin/babel-node ./generate-ts-def.js",
+    "prestart": "npm install && npm run ts-def"
   },
   "repository": {
     "type": "git",
