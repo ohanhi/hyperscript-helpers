@@ -8,12 +8,10 @@ const start =
 
 declare type HyperScriptHelpers = {`;
 
-/* eslint-disable */
 const middle = TAG_NAMES.reduce((accum, tag) => {
   return accum + `
   ${tag}: HyperScriptHelperFn;`;
 }, ``);
-/* eslint-enable */
 
 const end = `
 }
