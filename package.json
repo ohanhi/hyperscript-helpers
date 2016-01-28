@@ -4,23 +4,35 @@
   "description": "Terse syntax for hyperscript",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
+  "config": {
+    "commitizen": {
+      "path": "node_modules/rb-conventional-changelog/"
+    },
+    "ghooks": {
+      "commit-msg": "node ./node_modules/validate-commit-msg/index.js"
+    }
+  },
   "dependencies": {},
   "devDependencies": {
     "babel": "^5.6.14",
     "babel-eslint": "^4.1.4",
+    "commitizen": "^2.5.0",
     "eslint": "^1.9.0",
     "hyperscript": "^1.4.6",
     "jsverify": "^0.6.0",
     "lodash": "^3.10.0",
     "mocha": "^2.2.5",
-    "react": "^0.14.2"
+    "rb-conventional-changelog": "^1.1.9",
+    "react": "^0.14.2",
+    "validate-commit-msg": "^1.1.0"
   },
   "scripts": {
     "lint": "./node_modules/.bin/eslint src/",
     "test": "npm run lint && mocha",
     "start": "./node_modules/.bin/babel src/index.js --out-file dist/index.js",
     "ts-def": "./node_modules/.bin/babel-node ./generate-ts-def.js",
-    "prestart": "npm install && npm run ts-def"
+    "prestart": "npm install && npm run ts-def",
+    "commit": "./node_modules/.bin/git-cz"
   },
   "repository": {
     "type": "git",

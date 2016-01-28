@@ -208,6 +208,10 @@ npm start
 
 # run tests
 npm test
+
+# commit your changes with commitizen
+npm run commit
+# or "git cz", if you have commitizen in your PATH
 ```
 
 The source code can be found under the `src` directory, and the built file is under `dist`.
