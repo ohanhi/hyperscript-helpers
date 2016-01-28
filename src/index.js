@@ -35,8 +35,6 @@ const TAG_NAMES = [
   'th', 'thead', 'title', 'tr', 'u', 'ul', 'video'
 ];
 
-export { TAG_NAMES };
-
 export default
   h => {
     const createTag = node(h);

@@ -1,5 +1,7 @@
 import fs from 'fs';
-import { TAG_NAMES } from './src/index';
+import hh from './src/index';
+
+const { TAG_NAMES } = hh();
 
 const start =
 `declare interface HyperScriptHelperFn {
