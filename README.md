@@ -11,7 +11,7 @@ Terse syntax for hyperscript.
 **hyperscript-helpers** [elm-html](https://github.com/evancz/elm-html) inspired helpers for writing
 [hyperscript](https://github.com/dominictarr/hyperscript) or [virtual-hyperscript](https://github.com/Matt-Esch/virtual-dom/tree/master/virtual-hyperscript).
 
-They work with `React.createElement`, but there is also a feature-rich hyperscript library for React: 
+They work with `React.createElement`, but there is also a feature-rich hyperscript library for React:
 [react-hyperscript](https://github.com/mlmorg/react-hyperscript).
 
 ```javascript
@@ -28,7 +28,7 @@ h('section#main', mainContents)
 section('#main', mainContents)
 ```
 
-## hyperscript-helpers vs templates (including JSX) 
+## hyperscript-helpers vs templates (including JSX)
 
 With **hyperscript-helpers**:
 
@@ -82,7 +82,7 @@ ul('#bestest-menu', items.map( item =>
 npm install hyperscript-helpers
 ```
 
-The **hyperscript-helpers** are hyperscript-agnostic, which means there are no dependencies. 
+The **hyperscript-helpers** are hyperscript-agnostic, which means there are no dependencies.
 Instead, you need to pass the implementation when you import the helpers.
 
 Using ES6 :sparkling_heart:
@@ -127,7 +127,7 @@ Once that's done, you can go and use the terse syntax:
 
 ## API
 
-Because **hyperscript-helpers** are hyperscript-agnostic there is no "exact" API. 
+Because **hyperscript-helpers** are hyperscript-agnostic there is no "exact" API.
 But, just to give you a direction of what should be possible:
 
 ```js
@@ -139,15 +139,15 @@ tagName(selector, children)
 tagName(selector, attrs, children)
 ```
 
-Where 
+Where
 * `selector` is string, starting with "." or "#".
-* `attrs` is an object of attributes. 
+* `attrs` is an object of attributes.
 * `children` is a hyperscript node, an array of hyperscript nodes, a string or an array of strings.
 
 **hyperscript-helpers** is a collection of wrapper functions, so the syntax of your exact hyperscript library
 (like [virtual-hyperscript](https://github.com/Matt-Esch/virtual-dom/tree/master/virtual-hyperscript)) still applies.
 
-For example, for multiple classes: 
+For example, for multiple classes:
 
 ```js
 // ... with Matt-Esch/virtual-dom/.../virtual-hyperscript
@@ -155,7 +155,7 @@ button({className: "btn btn-default"}); // ← separated by space!
 button(".btn.btn-default");             // ← separated by dot!
 ```
 
-Other hyperscript libraries may have other syntax conventions. 
+Other hyperscript libraries may have other syntax conventions.
 
 
 ## Potential issues
@@ -180,9 +180,9 @@ As most hyperscript is written by hand, we decided keep this convenient shortcut
 
 ### Logic in class names
 
-If you need to apply logic rules for class generation, 
-we recommend using libraries like [classnames](https://github.com/JedWatson/classnames) 
-for making proper `{className: ...}` argument. 
+If you need to apply logic rules for class generation,
+we recommend using libraries like [classnames](https://github.com/JedWatson/classnames)
+for making proper `{className: ...}` argument.
 
 Not recommended:
 ```js
