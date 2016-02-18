@@ -32,7 +32,7 @@ const TAG_NAMES = [
   'object', 'ol', 'optgroup', 'option', 'p', 'param', 'pre', 'q', 'rp', 'rt',
   'ruby', 's', 'samp', 'script', 'section', 'select', 'small', 'source', 'span',
   'strong', 'style', 'sub', 'sup', 'table', 'tbody', 'td', 'textarea', 'tfoot',
-  'th', 'thead', 'title', 'tr', 'u', 'ul', 'video'
+  'th', 'thead', 'title', 'tr', 'u', 'ul', 'video', 'progress'
 ];
 
 export default
