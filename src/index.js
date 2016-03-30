@@ -16,6 +16,8 @@ const node =
       (first, ...rest) => {
         if (isSelector(first)) {
           return h(tagName + first, ...rest);
+        } else if (typeof first === 'undefined') {
+          return h(tagName);
         } else {
           return h(tagName, first, ...rest);
         }
