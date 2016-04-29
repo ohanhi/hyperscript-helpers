@@ -1,4 +1,4 @@
-import tagNames from 'html-tag-names'
+import tagNames from 'html-tag-names';
 
 const isValidString =
   param =>
