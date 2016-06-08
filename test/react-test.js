@@ -3,7 +3,8 @@ const React = require('react');
 const helpers = require('../dist/index')(React.createElement);
 const div = helpers.div;
 const jsc = require('jsverify');
-const _ = require('lodash')
+const _ = require('lodash');
+const tagNames = require('html-tag-names');
 
 describe('div', function(){
   jsc.property('div() ≡ React.createElement("div")', function(){
@@ -29,7 +30,7 @@ describe('div', function(){
   });
 });
 
-var tagArb = jsc.elements(helpers.TAG_NAMES);
+var tagArb = jsc.elements(tagNames);
 
 describe('arbitrary tag', function(){
   jsc.property('tag() ≡ React.createElement("tag")', tagArb, function(tag){
