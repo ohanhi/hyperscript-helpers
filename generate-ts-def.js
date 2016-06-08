@@ -1,7 +1,6 @@
 import fs from 'fs';
+import tagNames from 'html-tag-names';
 import hh from './src/index';
-
-const { TAG_NAMES } = hh();
 
 const start =
 `declare interface HyperScriptHelperFn {
@@ -10,7 +9,7 @@ const start =
 
 declare type HyperScriptHelpers = {`;
 
-const middle = TAG_NAMES.reduce((accum, tag) => {
+const middle = tagNames.reduce((accum, tag) => {
   return accum + `
   ${tag}: HyperScriptHelperFn;`;
 }, ``);

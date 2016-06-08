@@ -12,7 +12,9 @@
       "commit-msg": "node ./node_modules/validate-commit-msg/index.js"
     }
   },
-  "dependencies": {},
+  "dependencies": {
+    "html-tag-names": "^1.0.0"
+  },
   "devDependencies": {
     "babel": "^5.6.14",
     "babel-eslint": "^4.1.4",
