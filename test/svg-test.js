@@ -16,3 +16,4 @@ describe('svg', function(){
   jsc.property('rect() ≡ h("rect")', function(){
     return _.isEqual(h('rect').nodeName, rect().nodeName);
   });
+});
