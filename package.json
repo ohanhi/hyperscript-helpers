@@ -30,7 +30,7 @@
   "scripts": {
     "lint": "./node_modules/.bin/eslint src/",
     "test": "npm run lint && mocha",
-    "start": "./node_modules/.bin/babel src/index.js --out-file dist/index.js",
+    "start": "./node_modules/.bin/babel src --out-dir=dist",
     "ts-def": "./node_modules/.bin/babel-node ./generate-ts-def.js",
     "prestart": "npm install && npm run ts-def",
     "commit": "./node_modules/.bin/git-cz"
