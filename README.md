@@ -96,6 +96,14 @@ const { div, span, h1 } =
 With React
 
 ```js
+// ✅ Preferred
+const h = require('react-hyperscript');
+const React = require('react');
+const { div, span, h1 } =
+  require('hyperscript-helpers')(h); // ← Notice the (h)
+
+
+// Also works, but beware of the createElement API
 const React = require('react');
 const { div, span, h1 } =
   require('hyperscript-helpers')(React.createElement); // ← Notice the (React.createElement)
@@ -115,6 +123,10 @@ var div  = hh.div,
 Once that's done, you can go and use the terse syntax:
 
 ```js
+$ node
+▸ const { div, span, h1 } = require('hyperscript-helpers')(require('hyperscript'));
+◂ undefined
+
 ▸ span('😍').outerHTML
 ◂ '<span>😍</span>'
 
