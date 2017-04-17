@@ -120,6 +120,7 @@ declare type HyperScriptHelpers = {
   section: HyperScriptHelperFn;
   select: HyperScriptHelperFn;
   shadow: HyperScriptHelperFn;
+  slot: HyperScriptHelperFn;
   small: HyperScriptHelperFn;
   source: HyperScriptHelperFn;
   spacer: HyperScriptHelperFn;

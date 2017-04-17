@@ -1,6 +1,6 @@
 {
   "name": "hyperscript-helpers",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "description": "Terse syntax for hyperscript",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -20,7 +20,7 @@
     "eslint": "^1.9.0",
     "html-tag-names": "^1.0.0",
     "hyperscript": "^1.4.6",
-    "jsverify": "^0.6.0",
+    "jsverify": "0.6.0",
     "lodash": "^3.10.0",
     "mocha": "^2.2.5",
     "rb-conventional-changelog": "^1.1.9",
