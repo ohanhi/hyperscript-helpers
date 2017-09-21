@@ -19,12 +19,11 @@ const TAG_NAMES = [
   'tref', 'tspan', 'use', 'view', 'vkern'
 ];
 
-export default
-  h => {
-    const createTag = hh(h).createTag;
-    const exported = { TAG_NAMES };
-    TAG_NAMES.forEach(n => {
-      exported[n] = createTag(n);
-    });
-    return exported;
-  };
+export default h => {
+  const createTag = hh(h).createTag;
+  const exported = { TAG_NAMES, createTag };
+  TAG_NAMES.forEach(n => {
+    exported[n] = createTag(n);
+  });
+  return exported;
+};

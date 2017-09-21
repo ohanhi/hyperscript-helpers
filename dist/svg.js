@@ -15,7 +15,7 @@ var TAG_NAMES = ['a', 'altGlyph', 'altGlyphDef', 'altGlyphItem', 'animate', 'ani
 
 exports['default'] = function (h) {
   var createTag = (0, _index2['default'])(h).createTag;
-  var exported = { TAG_NAMES: TAG_NAMES };
+  var exported = { TAG_NAMES: TAG_NAMES, createTag: createTag };
   TAG_NAMES.forEach(function (n) {
     exported[n] = createTag(n);
   });
