@@ -15,6 +15,9 @@ const node = h => tagName => (first, ...rest) => {
   }
 };
 
+// The tag names are verified against html-tag-names in the tests
+// See https://github.com/ohanhi/hyperscript-helpers/issues/34 for the reason
+// why the tags aren't simply required from html-tag-names
 const TAG_NAMES = [
   'a', 'abbr', 'acronym', 'address', 'applet', 'area', 'article', 'aside',
   'audio', 'b', 'base', 'basefont', 'bdi', 'bdo', 'bgsound', 'big', 'blink',
