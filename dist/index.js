@@ -42,7 +42,9 @@ exports['default'] = function (h) {
   var createTag = node(h);
   var exported = { TAG_NAMES: TAG_NAMES, isSelector: isSelector, createTag: createTag };
   TAG_NAMES.forEach(function (n) {
-    exported[n] = createTag(n);
+    // Also support a first-letter-uppercase spelling to help avoid conflicts
+    // with other variables or Javascript reserved keywords such as 'var'
+    exported[n] = exported[n.charAt(0).toUpperCase() + n.slice(1)] = createTag(n);
   });
   return exported;
 };

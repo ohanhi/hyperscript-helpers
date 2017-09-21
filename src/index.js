@@ -43,7 +43,10 @@ export default h => {
   const createTag = node(h);
   const exported = { TAG_NAMES, isSelector, createTag };
   TAG_NAMES.forEach(n => {
-    exported[n] = createTag(n);
+    // Also support a first-letter-uppercase spelling to help avoid conflicts
+    // with other variables or Javascript reserved keywords such as 'var'
+    exported[n] = exported[n.charAt(0).toUpperCase() + n.slice(1)] =
+      createTag(n);
   });
   return exported;
 };
