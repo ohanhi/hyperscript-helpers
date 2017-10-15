@@ -11,6 +11,10 @@ describe('div', function(){
     return _.isEqual(h('div').nodeName, div().nodeName);
   });
 
+  jsc.property('Div() ≡ div()', function(){
+    return _.isEqual(div().nodeName, helpers.Div().nodeName);
+  });
+
   jsc.property('div(attrs) ≡ h("div", attrs)', "dict string", function(attrs){
     const hr = h('div', attrs);
     const divr = div(attrs);
@@ -35,6 +39,11 @@ var tagArb = jsc.elements(tagNames);
 describe('arbitrary tag', function(){
   jsc.property('tag() ≡ h("tag")', tagArb, function(tag){
     return _.isEqual(h(tag).nodeName, helpers[tag]().nodeName);
+  });
+
+  jsc.property('Tag() ≡ tag()', tagArb, function(tag){
+    const Tag = tag.charAt(0).toUpperCase() + tag.slice(1)
+    return _.isEqual(helpers[tag]().nodeName, helpers[Tag]().nodeName);
   });
 
   jsc.property('div(attrs) ≡ h("div", attrs)', tagArb, "dict string", function(tag, attrs){

@@ -124,7 +124,10 @@ Once that's done, you can go and use the terse syntax:
 
 ```js
 $ node
-▸ const { div, span, h1 } = require('hyperscript-helpers')(require('hyperscript'));
+▸ const hh = require('hyperscript-helpers')(require('hyperscript'));
+◂ undefined
+
+▸ const { div, span, h1 } = hh;
 ◂ undefined
 
 ▸ span('😍').outerHTML
@@ -135,6 +138,31 @@ $ node
 
 ▸ div('#with-proper-id.wrapper', [ h1('Heading'), span('Spanner') ]).outerHTML
 ◂ '<div class="wrapper" id="with-proper-id"><h1>Heading</h1><span>Spanner</span></div>'
+```
+
+It's also natively supported to spell the helper function names with an uppercase first
+letter, for example to avoid conflicts with existing variables or reserved
+JavaScript keywords:
+
+```js
+▸ const { Span, Var } = hh;
+◂ undefined
+
+▸ Span('😍').outerHTML
+◂ '<span>😍</span>'
+
+▸ Var('x').outerHTML
+◂ '<var>x</var>'
+```
+
+Creating custom HTML tag names can be done with the `createTag` function:
+
+```js
+▸ const someFn = hh.createTag('otherTag');
+◂ undefined
+
+▸ someFn('bla').outerHTML
+◂ '<otherTag>bla</otherTag>'
 ```
 
 ## API
@@ -152,6 +180,7 @@ tagName(selector, attrs, children)
 ```
 
 Where
+* `tagName` is a helper function named like the HTML element that it creates; **hyperscript-helpers** natively supports spelling the tag name with the first letter lowercase or uppercase.
 * `selector` is string, starting with "." or "#".
 * `attrs` is an object of attributes.
 * `children` is a hyperscript node, an array of hyperscript nodes, a string or an array of strings.
