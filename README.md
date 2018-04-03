@@ -8,7 +8,7 @@ Terse syntax for hyperscript.
 
 ## What is it
 
-**hyperscript-helpers** [elm-html](https://github.com/evancz/elm-html) inspired helpers for writing
+**hyperscript-helpers** [elm-html](https://github.com/elm-lang/html/) inspired helpers for writing
 [hyperscript](https://github.com/dominictarr/hyperscript) or [virtual-hyperscript](https://github.com/Matt-Esch/virtual-dom/tree/master/virtual-hyperscript).
 
 They work with `React.createElement`, but there is also a feature-rich hyperscript library for React:
